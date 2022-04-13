@@ -3,11 +3,11 @@ print("Welcome back to the UW Calculator")
 // Your job is to fill out Calculator so all the expressions
 // below both compile and return "true"
 class Calculator {
-    func add(lhs : Int, rhs : Int) -> Int {
+    func add(lhs: Int, rhs: Int) -> Int {
         return lhs + rhs
     }
     
-    func add(_ nums : [Int]) -> Int {
+    func add(_ nums: [Int]) -> Int {
         var total = 0
         for num in nums {
             total += num
@@ -15,23 +15,37 @@ class Calculator {
         return total
     }
     
-    func add(lhs : (x : Int, y : Int), rhs : (x : Int, y : Int)) -> (Int, Int) {
+    func add(lhs: (x: Int, y: Int), rhs: (x: Int, y: Int)) -> (Int, Int) {
         return (lhs.x + rhs.x, lhs.y + rhs.y)
     }
     
-    func subtract(lhs : Int, rhs : Int) -> Int {
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var result = ["x": 0, "y": 0]
+        result["x"] = lhs["x"]! + rhs["x"]!
+        result["y"] = lhs["y"]! + rhs["y"]!
+        return result
+    }
+    
+    func subtract(lhs: Int, rhs: Int) -> Int {
         return lhs - rhs
     }
     
-    func subtract(lhs : (x : Int, y : Int), rhs : (x : Int, y : Int)) -> (Int, Int) {
+    func subtract(lhs: (x: Int, y: Int), rhs: (x: Int, y: Int)) -> (Int, Int) {
         return (lhs.x - rhs.x, lhs.y - rhs.y)
     }
     
-    func multiply(lhs : Int, rhs : Int) -> Int {
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var result = ["x": 0, "y": 0]
+        result["x"] = lhs["x"]! - rhs["x"]!
+        result["y"] = lhs["y"]! - rhs["y"]!
+        return result
+    }
+    
+    func multiply(lhs: Int, rhs: Int) -> Int {
         return lhs * rhs
     }
     
-    func multiply(_ nums : [Int]) -> Int {
+    func multiply(_ nums: [Int]) -> Int {
         var count = 0
         var total = 1
         for num in nums {
@@ -44,15 +58,15 @@ class Calculator {
         return total
     }
     
-    func divide(lhs : Int, rhs : Int) -> Int {
+    func divide(lhs: Int, rhs: Int) -> Int {
         return lhs / rhs
     }
     
-    func count(_ nums : [Int]) -> Int {
+    func count(_ nums: [Int]) -> Int {
         return nums.count
     }
     
-    func avg(_ nums : [Int]) -> Int {
+    func avg(_ nums: [Int]) -> Int {
         var count = 0
         var total = 0
         for num in nums {
@@ -65,11 +79,11 @@ class Calculator {
         return total / count
     }
     
-    func mathOp(lhs : Int, rhs : Int, op : (Int, Int) -> Int) -> Int {
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
         return op(lhs, rhs)
     }
     
-    func mathOp(args : [Int], beg : Int, op : (Int, Int) -> Int) -> Int {
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
         var total = op(beg, args[0])
         for i in 1...args.count - 1 {
             total = op(total, args[i])
@@ -116,8 +130,8 @@ calc.add(lhs: p1, rhs: p2) == (17, -22)
 calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
 calc.add(lhs: p4, rhs: p4) == (0, 0)
 calc.add(lhs: p3, rhs: p4) == (-4, 4)
-//
-//let pd1 = ["x": 5, "y": 5]
-//let pd2 = ["x": -4, "y": 4]
-//calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
-//calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
+
+let pd1 = ["x": 5, "y": 5]
+let pd2 = ["x": -4, "y": 4]
+calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
+calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
